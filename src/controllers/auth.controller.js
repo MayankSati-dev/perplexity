@@ -42,7 +42,7 @@ await SendEmail({
     html:`<p>Hy ${username},</p>
           <p>Thanku for registering at <strong>perplexity</strong> we are excited to have you on Board! Best regards, the perplexity team</p>
           <p>please verify your email adress by clicking the link below:</P>
-          <a href="http://localhost:3000/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
+          <a href="https://perplexity-2-6pg6.onrender.com/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
           <p>best regards,</p>
           <p>the perplexity team</p>`
 })
@@ -97,7 +97,7 @@ if(isUseralreadyExist.verified==true){
     html:`<p>Hy ${username},</p>
           <p>Thanku for registering at <strong>perplexity</strong> we are excited to have you on Board! Best regards, the perplexity team</p>
           <p>please verify your email adress by clicking the link below:</P>
-          <a href="http://localhost:3000/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
+          <a href="https://perplexity-2-6pg6.onrender.com/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
           <p>best regards,</p>
           <p>the perplexity team</p>`
 })
@@ -127,7 +127,7 @@ try{
  
 
 if(user.verified){
-     return  res.redirect("http://localhost:5173/login")
+     return  res.redirect("https://perplexity-2-6pg6.onrender.com/login")
 }
 
  user.verified=true;
@@ -135,7 +135,7 @@ if(user.verified){
 const html=`
     <h1>Email verified sucessfully</h1>
     <P>your email has beeen verified. you can now log in to your account</p>
-    <a href="http://localhost:5173/login">Go to Login</a>
+    <a href="https://perplexity-2-6pg6.onrender.com/login">Go to Login</a>
     `
    
 res.send(html)
