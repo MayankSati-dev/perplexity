@@ -1,34 +1,73 @@
+// import nodemailer from "nodemailer";
+// // transporter is use to communicate with (SMTP servers)
+// const transporter=nodemailer.createTransport({
+//     service:"gmail",
+//     auth:{
+//         type:'OAuth2',
+//         user:process.env.GOOGLE_USER,
+//         clientSecret:process.env.GOOGLE_CLIENT_SECRET,
+//         refreshToken:process.env.GOOGLE_REFRESH_TOKEN,
+//         clientId:process.env.GOOGLE_CLIENT_ID
+//     },
+// })
+
+
+// //ab yaha par verify karte hai ki humara server ready ho gaya hai ya nahi 
+// //SMTP server se connect karne ke liye
+// transporter.verify()
+// .then(()=>{console.log("email transporter is ready to send email")})
+// .then((err)=>{
+// console.log("email transporter verification failed",err)
+// })
+
+// export async function SendEmail({to,subject,html,text}){
+//     const mailoptions={
+//         from:process.env.GOOGLE_USER,
+//         to,
+//         subject,
+//         html,
+//         text
+//     }
+//     const details=await transporter.sendMail(mailoptions);
+//     console.log("email details:",details)
+// }
+
+
 import nodemailer from "nodemailer";
-// transporter is use to communicate with (SMTP servers)
-const transporter=nodemailer.createTransport({
-    service:"gmail",
-    auth:{
-        type:'OAuth2',
-        user:process.env.GOOGLE_USER,
-        clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-        refreshToken:process.env.GOOGLE_REFRESH_TOKEN,
-        clientId:process.env.GOOGLE_CLIENT_ID
-    },
-})
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
-//ab yaha par verify karte hai ki humara server ready ho gaya hai ya nahi 
-//SMTP server se connect karne ke liye
-transporter.verify()
-.then(()=>{console.log("email transporter is ready to send email")})
-.then((err)=>{
-console.log("email transporter verification failed",err)
-})
+export async function SendEmail({ to, subject, html, text }) {
+  try {
+    const details = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to,
+      subject,
+      html,
+      text
+    });
 
-export async function SendEmail({to,subject,html,text}){
-    const mailoptions={
-        from:process.env.GOOGLE_USER,
-        to,
-        subject,
-        html,
-        text
-    }
-    const details=await transporter.sendMail(mailoptions);
-    console.log("email details:",details)
+    console.log(details);
+    return details;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
 }
+
+
+
+
+
+
+
+
+
+
 
