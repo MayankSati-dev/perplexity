@@ -115,7 +115,7 @@ export async function register(req, res) {
 
         <p>Please verify your email address by clicking below:</p>
 
-        <a href="https://perplexity-3-pqhq.onrender.com/api/verify-email?token=${emailVerifycationtoken}">
+        <a href="https://perplexity-4.onrender.com/api/verify-email?token=${emailVerifycationtoken}">
           Verify Email
         </a>
 
@@ -182,7 +182,7 @@ if(isUseralreadyExist.verified==true){
     html:`<p>Hy ${username},</p>
           <p>Thanku for registering at <strong>perplexity</strong> we are excited to have you on Board! Best regards, the perplexity team</p>
           <p>please verify your email adress by clicking the link below:</P>
-          <a href="https://perplexity-3-pqhq.onrender.com/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
+          <a href="https://perplexity-4.onrender.com/api/verify-email?token=${emailVerifycationtoken}">verify email</a>
           <p>best regards,</p>
           <p>the perplexity team</p>`
 })
@@ -212,7 +212,7 @@ try{
  
 
 if(user.verified){
-     return  res.redirect("https://perplexity-3-pqhq.onrender.com/login")
+     return  res.redirect("https://perplexity-4.onrender.com/login")
 }
 
  user.verified=true;
@@ -220,7 +220,7 @@ if(user.verified){
 const html=`
     <h1>Email verified sucessfully</h1>
     <P>your email has beeen verified. you can now log in to your account</p>
-    <a href="https://perplexity-3-pqhq.onrender.com/login">Go to Login</a>
+    <a href="https://perplexity-4.onrender.com/login">Go to Login</a>
     `
    
 res.send(html)
