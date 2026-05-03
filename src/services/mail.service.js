@@ -34,6 +34,7 @@
 
 
 import nodemailer from "nodemailer";
+import { email } from "zod";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -45,15 +46,15 @@ const transporter = nodemailer.createTransport({
 
 export async function SendEmail({ to, subject, html, text }) {
   try {
-    const details = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to,
-      subject,
-      html,
-      text
-    });
-
-    console.log(details);
+     const mailoptions={
+       from:process.env.GOOGLE_USER,
+         to,
+         subject,
+         html,
+         text
+     }
+     const details=await transporter.sendMail(mailoptions);
+    console.log(details)
     return details;
   } catch (err) {
     console.log(err);
