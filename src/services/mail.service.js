@@ -37,22 +37,28 @@ import nodemailer from "nodemailer";
 import { email } from "zod";
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
   secure: false,
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  },
-  connectionTimeout: 30000,
-  greetingTimeout: 30000,
-  socketTimeout: 30000
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
 });
+
+transporter
+  .verify()
+  .then(() => {
+    console.log("Brevo email transporter ready");
+  })
+  .catch((err) => {
+    console.log("Brevo transporter error:", err);
+  });
 
 export async function SendEmail({ to, subject, html, text }) {
   try {
      const mailoptions={
-       from:process.env.GOOGLE_USER,
+       from:process.env.SENDER_EMAIL,
          to,
          subject,
          html,
